@@ -19,8 +19,20 @@
 */
 
 function chopArray(array, numElements) {
-    // TODO: Implement Me
     const result = {};
+    let groupIndex = 1;
+    for (let i = 0; i < array.length; i += numElements) {                // Dizi elemanlarını gruplarına ayırıyoruz.
+        result[`grup ${groupIndex}`] = array.slice(i, i + numElements);  // Grupları oluşturuyoruz.
+        groupIndex++;
+    }
+    const totalGroups = groupIndex - 1;                                  // Toplam grup sayısını alıyoruz.
+    const lastGroup = result[`grup ${totalGroups}`];                     // Son gruba erişiyoruz.
+    if (lastGroup.length < numElements) {                                // Eğer son grup, belirtilen eleman sayısından azsa, kalanları alıyoruz.
+        result.kalan = lastGroup;                                        // Kalanları alıyoruz.
+        delete result[`grup ${totalGroups}`];                            // Son gruptan kalanları siliyoruz.
+    } else {
+        result.kalan = [];                                               // Eğer kalan eleman yoksa, boş bir array oluşturuyoruz.
+    }
 
     console.log(result);
     return result;
@@ -32,4 +44,6 @@ chopArray(['a', 'b', 1, 2, 'c', 'd', 525], 4);
 chopArray([10,20,11,30,41,50], 3);
 chopArray([10,20,11,30,41,50], 2);
 chopArray([10,20,11,30,41,50], 1);
-chopArray([10,20,11,30,41,50], 6);
+chopArray([10,20,11,30,41,50], 5);
+chopArray([10,20,11,30,41,50, 'selam'], 5);
+chopArray([10,'sa',20,11,30,'as',41,50], 3);

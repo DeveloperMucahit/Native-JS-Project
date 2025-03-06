@@ -23,12 +23,26 @@
 */
 
 function botProtection (arr) {
-    // TODO: Implement Me
-    let result = '';
-
+    const commandCount = {};
+    const results = [];
+    for (let i = 0; i < arr.length - 2; i++) {          // Dizi boyunca 3 ardaşık komutları kontrol ediyoruz.
+        const command = arr.slice(i, i + 3).join(' ');  // 3 komutu birleştirip bir string oluşturuyoruz.
+        if (commandCount[command]) {                    // Eğer bu komut daha önce eklenmişse, sayısını bir arttırıyoruz.   
+            commandCount[command]++;
+        } else {
+            commandCount[command] = 1;
+        }
+    }
+    
+    for (const command in commandCount) {                // Komutları kontrol ediyoruz.
+        if (commandCount[command] >= 2) {                // Eğer bir komut 2 veya daha fazla tekrar ediyorsa, return ediyoruz.
+            results.push(command);
+        }
+    }
     console.log(results);
     return results;
 }
+
 
 // Kodunuzu farkli girdilerle test edebilirsiniz.
 // Dosyayi calistirmak icin, Terminal >> node bot-protection.js
