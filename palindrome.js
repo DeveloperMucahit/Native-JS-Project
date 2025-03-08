@@ -11,9 +11,12 @@
 */
 
 function palindromeChecker(str) {
+    if(str === "" || typeof str !== 'string' || str === undefined)  {  // Eğer string boşsa ve string, string objesi değilse false döndürüyoruz.
+        return console.log(false); 
+       }  
     const cleanedStr = str.toLowerCase().replace(' ', '');        // Öncelikle stringi küçük harfe çevirip, boşlukları kaldırıyoruz.
     const reversedStr = cleanedStr.split('').reverse().join('');  // Küçük harfe ve boşlukları temizlenen stringi ters çeviriyoruz.
-    if(cleanedStr === reversedStr)                                // Temizlenmiş stringin ters çevrilmiş hali ile aynı olup olmadığını kontrol ediyoruz.
+    if(cleanedStr === reversedStr)                                // Temizlenmiş stringin ters çevrilmiş hali ile aynı olup olmadığını kontrol ediyoruz. 
         return console.log(true);
     else 
         return console.log(false);
@@ -30,3 +33,5 @@ palindromeChecker("Yapay");
 palindromeChecker("Mücahit Karabacak");
 palindromeChecker("Karabacak");
 palindromeChecker("Ey Edip Adanada Pide Ye");
+palindromeChecker(undefined);
+palindromeChecker("");

@@ -19,6 +19,10 @@
 */
 
 function chopArray(array, numElements) {
+    if(array.length === 0 || numElements <= 0 || !Array.isArray(array) || typeof numElements !== 'number'){ // Eğer array boşsa, eleman sayısı sıfırsa ve array, Array objesi değilse boş bir obje döndürüyoruz.
+         return console.log({}) 
+        }      
+                                            
     const result = {};
     let groupIndex = 1;
     for (let i = 0; i < array.length; i += numElements) {                // Dizi elemanlarını gruplarına ayırıyoruz.
@@ -47,3 +51,6 @@ chopArray([10,20,11,30,41,50], 1);
 chopArray([10,20,11,30,41,50], 5);
 chopArray([10,20,11,30,41,50, 'selam'], 5);
 chopArray([10,'sa',20,11,30,'as',41,50], 3);
+chopArray([10,20,11], 5);
+chopArray([10,20,11], 0);
+chopArray({10:2011}, 1);

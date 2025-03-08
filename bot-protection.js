@@ -23,6 +23,9 @@
 */
 
 function botProtection (arr) {
+    if(arr.length <= 2 || !Array.isArray(arr))  {  // Eğer array boşsa ve array, Array objesi değilse boş bir obje döndürüyoruz.
+        return "";
+       }  
     const commandCount = {};
     const results = [];
     for (let i = 0; i < arr.length - 2; i++) {          // Dizi boyunca 3 ardaşık komutları kontrol ediyoruz.
@@ -60,5 +63,8 @@ botProtection([
     "back",
     "left",
     "left",
-    "right"
+    "right",
+    "left",
+    "right",
+    "fire",
 ]);
